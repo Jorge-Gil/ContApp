@@ -72,7 +72,7 @@ function Header() {
                 href="#"
                 className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Quiero sser proveedor
+                Quiero ser proveedor
               </a>
               <a
                 href="#"
