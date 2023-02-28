@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
   <Header />
-    <div className="bg-paleta-AzulOscuro max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 font-Outfit">
+    <div className="bg-paleta-AzulOscuro w-auto h-full mx-auto py-6 sm:px-6 lg:px-8 font-Outfit">
     <div className="flex flex-wrap -mx-4">
       <div className="w-full lg:w-1/2 px-4">
         <div className="lg:mt-20">

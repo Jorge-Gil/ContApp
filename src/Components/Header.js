@@ -3,17 +3,17 @@ import { SearchIcon } from "@heroicons/react/solid";
 function Header() {
   return (
     <header className="bg-paleta-AzulOscuro">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <h1 className="text-white font-bold">ContApp</h1>
           </div>
-          <div className="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
-            <div className="max-w-lg w-full lg:max-w-xs">
+          <div className="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-start max-w:96">
+            <div className=" w-full lg:max-w-md">
               <label htmlFor="search" className="sr-only">
                 Search
               </label>
-              <div className="relative">
+              <div className="relative ">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
