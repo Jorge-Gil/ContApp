@@ -4,24 +4,21 @@ import * as Yup from "yup";
  function RegistroProveedores() {
    
         const valoresIniciales = {
-          NombreUsuario: "",
+        Especialidad: "",
           Contrasenia: "",
           Nombre1Cuenta: "",
           Nombre2Cuenta: "",
           Apellido1Cuenta: "",
           Apellido2Cuenta: "",
-          Genero: "",
-          Cedula: "",
+          
+        
           DireccionCuenta: "",
           TelefonoCuenta: "",
           CelularCuenta: "",
         };
       
         const validacion = Yup.object().shape({
-          NombreUsuario: Yup.string()
-            .min(3, "El nombre de usuario debe contener como mínimo 3 caracteres")
-            .max(20, "El nombre de usuario debe contener como máximo 20 caracteres")
-            .required("Nombre de usuario es un campo requerido"),
+        
           Contrasenia: Yup.string()
             .min(3, "La contraseña debe tener como mínimo 3 caracteres")
             .max(20, "La contraseña debe tener como máximo 20 caracteres")
@@ -42,14 +39,11 @@ import * as Yup from "yup";
             .min(3, "El segundo apellido debe tener como mínimo 3 caracteres")
             .max(20, "El segundo apellido debe tener como máximo 20 caracteres")
             .notRequired(),
-          Genero: Yup.string()
-            .min(3, "El Género debe tener como mínimo 3 caracteres")
-            .max(15, "El Género debe tener como máximo 15 caracteres")
+          Especialidad: Yup.string()
+            .min(3, "La especialidad debe tener como mínimo 3 caracteres")
+            .max(30, "La especialidad debe tener como máximo 15 caracteres")
             .required("Genero es un campo requerido"),
-          Cedula: Yup.string()
-            .min(3, "La cédula debe tener como mínimo 3 caracteres")
-            .max(20, "La cédula debe tener como máximo 20 caracteres")
-            .required("Cédula es un campo requerido"),
+    
           DireccionCuenta: Yup.string()
             .min(3, "La dirección debe tener como mínimo 3 caracteres")
             .max(40, "La cédula debe tener como máximo 40 caracteres")
@@ -74,24 +68,8 @@ import * as Yup from "yup";
       // onSubmit={onSubmit}
     >
       <Form className="contenedorRegistro">
-        <div className="izquierdaRegistro">
-          <label> Nombre de Usuario</label>
-          <ErrorMessage name="NombreUsuario" component="span" />
-          <Field
-            autoComplete="off"
-            id="formatoRegistro"
-            name="NombreUsuario"
-            placeholder="Ej. SoyMuyCool69..."
-          />
-          <label> Contraseña</label>
-          <ErrorMessage name="Contrasenia" component="span" />
-          <Field
-            autoComplete="off"
-            id="formatoRegistro"
-            name="Contrasenia"
-            placeholder="Ingrese su contraseña..."
-          />
-
+        
+        
           <label> Primer nombre</label>
           <ErrorMessage name="Nombre1Cuenta" component="span" />
           <Field
@@ -127,36 +105,40 @@ import * as Yup from "yup";
             name="Apellido2Cuenta"
             placeholder="Ingrese su Segundo apellido..."
           />
-        </div>
-        <div className="derechaRegistro">
-          <label> Genero</label>
-          <ErrorMessage name="Genero" component="span" />
+     
+
+        <label> Contraseña</label>
+          <ErrorMessage name="Contrasenia" component="span" />
           <Field
             autoComplete="off"
             id="formatoRegistro"
-            name="Genero"
-            placeholder="Ingrese su Género..."
+            name="Contrasenia"
+            placeholder="Ingrese su contraseña..."
           />
-          {/* <select
-            name="Genero"
+
+        <div className="derechaRegistro">
+          {/* <label> Especialidad</label>
+          <ErrorMessage name="Especialidad" component="span" />
+          <Field
+            autoComplete="off"
+            id="formatoRegistro"
+            name="Especialidad"
+            placeholder="Ingrese su Especialidad..."
+          /> */}
+          <select
+            name="Especialidad"
             // value={opciones.Genero}
             id="formatoRegistro"
             style={{ display: "block" }}
           >
-            <option value="" label="Seleccione su genero..." />
-            <option value="Hombre" label="Hombre" />
-            <option value="Mujer" label="Mujer" />
-            <option value="Otro" label="Otro" />
-          </select> */}
+            <option value="" label="Seleccione su especialidad..." />
+            <option value="ContadorFiscal" label="Contador Fiscal" />
+            <option value="ContadorGubernamental" label="Contador Gubernamental" />
+            <option value="Auditor" label="Auditor" />
+            <option value="ConsultorContable" label="Consultor Contable" />
+          </select>
 
-          <label> Cedula</label>
-          <ErrorMessage name="Cedula" component="span" />
-          <Field
-            autoComplete="off"
-            id="formatoRegistro"
-            name="Cedula"
-            placeholder="Ingrese su Cédula..."
-          />
+         
 
           <label> Dirección </label>
           <ErrorMessage name="DireccionCuenta" component="span" />

@@ -5,12 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Header from './Components/Header';
 import Home from './Pages/Home'
-import RegistroProveedores from './Pages/RegistroProveedores'
+// import RegistroProveedores from './Pages/RegistroProveedores'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Home />
+    {/* <RegistroProveedores /> */}
   </React.StrictMode>
 );
 
