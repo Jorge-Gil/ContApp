@@ -21,8 +21,8 @@ function Header() {
                   type="text"
                   name="search"
                   id="search"
-                  className="block w-full bg-gray-700 border border-transparent rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 sm:text-sm"
-                  placeholder="Search"
+                  className="block w-full  border border-transparent rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 sm:text-sm"
+                  placeholder="Buscar"
                 />
               </div>
             </div>
@@ -82,9 +82,6 @@ function Header() {
               </a>
                 <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     Iniciar sesión
-                </a>
-                <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Registrarse
                 </a>
             </div>
             </div>

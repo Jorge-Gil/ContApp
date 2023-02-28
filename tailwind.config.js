@@ -10,6 +10,9 @@ module.exports = {
         grisclaro: '#EEEEEE',
 
       },
+      fontFamily: {
+        Outfit: ['Outfit', 'sans-serif'],
+      },
     }},
   },
   plugins: [],
