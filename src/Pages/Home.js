@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckIcon } from "@heroicons/react/solid";
 import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -33,6 +34,7 @@ function Home() {
       </div>
     </div>
   </div>
+  <Footer />
   </>
 );
 }

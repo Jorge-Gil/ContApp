@@ -1,4 +1,6 @@
 import { SearchIcon } from "@heroicons/react/solid";
+import PerfilDropdown from "./PerfilDropdown";
+import Chat from "./Chat";
 
 function Header() {
   return (
@@ -15,7 +17,10 @@ function Header() {
               </label>
               <div className="relative ">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <SearchIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                 </div>
                 <input
                   type="text"
@@ -66,6 +71,8 @@ function Header() {
               </svg>
             </button>
           </div>
+          <Chat />
+          <PerfilDropdown />
           <div className="hidden lg:block lg:ml-4">
             <div className="flex space-x-4">
               <a
@@ -80,15 +87,18 @@ function Header() {
               >
                 Quiero ser cliente
               </a>
-                <a href="#" className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Iniciar sesión
-                </a>
+              <a
+                href="#"
+                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Iniciar sesión
+              </a>
             </div>
-            </div>
+          </div>
         </div>
-        </nav>
+      </nav>
     </header>
-    );
+  );
 }
 
 export default Header;

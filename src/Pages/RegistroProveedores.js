@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
  function RegistroProveedores() {
@@ -61,6 +63,8 @@ import * as Yup from "yup";
     
       
   return (
+    <>
+    <Header />
     <div className="Registro">
     <Formik
       initialValues={valoresIniciales}
@@ -173,6 +177,8 @@ import * as Yup from "yup";
       </Form>
     </Formik>
   </div>
+  <Footer />
+  </>
   )
 }
 export default RegistroProveedores

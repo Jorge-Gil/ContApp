@@ -1,14 +1,12 @@
 import React from "react";
 import Header from "../Components/Header";
-import CuadroInicioSesion from "../Components/CuadroInicioSesion";
 import Footer from "../Components/Footer";
 
-export default function InicioSesion() {
+export default function PerfilProveedor() {
   return (
     <>
       <Header />
-      <div>InicioSesion</div>
-      <CuadroInicioSesion />
+      <div>PerfilProveedor</div>
       <Footer />
     </>
   );

@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../Components/Header";
-import CuadroInicioSesion from "../Components/CuadroInicioSesion";
+import OpcionesLayout from "../Components/OpcionesLayout";
 import Footer from "../Components/Footer";
 
-export default function InicioSesion() {
+export default function OpcionesClientes() {
   return (
     <>
       <Header />
-      <div>InicioSesion</div>
-      <CuadroInicioSesion />
+      <div>OpcionesClientes</div>
+      <OpcionesLayout />
       <Footer />
     </>
   );
