@@ -1,24 +1,26 @@
 import { SearchIcon } from "@heroicons/react/solid";
 import PerfilDropdown from "./PerfilDropdown";
 import Chat from "./Chat";
+import Logo from "../Images/Logo.png";
 
 function Header() {
   return (
     <header className="bg-paleta-AzulOscuro">
       <nav className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <h1 className="text-white font-bold">ContApp</h1>
+          <div className="flex-shrink-0 flex items-center">
+          <img className="h-12 w-12 mr-2" src={Logo} alt="Placeholder" />
+            <h1 className="text-white font-bold text-lg">ContApp</h1>
           </div>
           <div className="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-start max-w:96">
-            <div className=" w-full lg:max-w-md">
+            <div className=" w-full lg:max-w-5xl">
               <label htmlFor="search" className="sr-only">
                 Search
               </label>
               <div className="relative ">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <SearchIcon
-                    className="h-5 w-5 text-gray-400"
+                    className="h-5 w-5 text-gray-800"
                     aria-hidden="true"
                   />
                 </div>
@@ -26,13 +28,13 @@ function Header() {
                   type="text"
                   name="search"
                   id="search"
-                  className="block w-full  border border-transparent rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 sm:text-sm"
+                  className="block w-full  border border-transparent rounded-md py-2 pl-10 pr-3 text-base placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 "
                   placeholder="Buscar"
                 />
               </div>
             </div>
           </div>
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center lg:hidden ">
             <button
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
@@ -73,23 +75,23 @@ function Header() {
           </div>
           <Chat />
           <PerfilDropdown />
-          <div className="hidden lg:block lg:ml-4">
+          <div className="hidden lg:block lg:ml-4 ">
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
               >
                 Quiero ser proveedor
               </a>
               <a
                 href="#"
-                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
               >
                 Quiero ser cliente
               </a>
               <a
                 href="#"
-                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
               >
                 Iniciar sesión
               </a>

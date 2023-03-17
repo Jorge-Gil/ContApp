@@ -8,6 +8,7 @@ module.exports = {
       paleta: {
         AzulOscuro: '#00165B',
         grisclaro: '#EEEEEE',
+        AzulFooter: '#001043',
 
       },
       fontFamily: {
