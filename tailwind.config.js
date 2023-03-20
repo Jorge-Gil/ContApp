@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'Outfit': ['Outfit'],
+    },
     extend: {  colors: {
       paleta: {
         AzulOscuro: '#00165B',
@@ -12,7 +15,7 @@ module.exports = {
 
       },
       fontFamily: {
-        Outfit: ['Outfit', 'sans-serif'],
+        'Outfit': ['Outfit'],
       },
     }},
   },

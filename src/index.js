@@ -5,13 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Header from './Components/Header';
 import Home from './Pages/Home'
-// import RegistroProveedores from './Pages/RegistroProveedores'
+import { BrowserRouter  } from 'react-router-dom';
+import {AppRoutes} from './Routes/AppRoutes';
+import RegistroProveedores from './Pages/RegistroProveedores'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Home />
+    <BrowserRouter>
+    <AppRoutes />
+    {/* <Home /> */}
     {/* <RegistroProveedores /> */}
+    </BrowserRouter>
   </React.StrictMode>
 );
 
