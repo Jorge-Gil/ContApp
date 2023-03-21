@@ -3,9 +3,12 @@ import PerfilDropdown from "./PerfilDropdown";
 import Chat from "./Chat";
 import Logo from "../Images/Logo.png";
 import { AppRoutes } from "../Routes/AppRoutes";
-import { BrowserRouter, Routes, Route, Link, Router, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Router, Outlet, useLocation } from "react-router-dom";
 
 function Header() {
+
+ const location = useLocation();
+
   return (
     <>
       {/* <AppRoutes /> */}
@@ -86,6 +89,8 @@ function Header() {
             <PerfilDropdown />
             <div className="hidden lg:block lg:ml-4 ">
               <div className="flex space-x-4">
+                {location.pathname !== "/RegistroProveedores" &&  location.pathname !== "/RegistroClientes" ? (
+                  <>
                 <Link
                   to="/RegistroProveedores"
                   className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
@@ -97,7 +102,8 @@ function Header() {
                   className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
                 >
                   Quiero ser cliente
-                </Link>
+                </Link> </>) : null}
+
                 <Link
                   to="/IniciarSesion"
                   className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium"
@@ -111,7 +117,7 @@ function Header() {
       </nav>
       
     </header>
-   <Outlet />
+   {/* <Outlet /> */}
     </>
   );
 }
