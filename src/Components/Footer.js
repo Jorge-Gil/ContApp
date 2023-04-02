@@ -7,7 +7,7 @@ import Twitter from "../Images/Twitter.png";
 function Footer() {
   return (
 <div>
-  <footer className="bg-paleta-AzulFooter ">
+  <footer className="bg-paleta-AzulFooter  font-Outfit">
     <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 ">
       <div
         className="-mx-5 -my-2 flex flex-wrap justify-center"

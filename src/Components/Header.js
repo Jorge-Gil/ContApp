@@ -12,7 +12,7 @@ function Header() {
   return (
     <>
       {/* <AppRoutes /> */}
-    <header className="bg-paleta-AzulOscuro">
+    <header className="bg-paleta-AzulOscuro font-Outfit">
       <nav className=" mx-auto px-4 sm:px-6 lg:px-8">
      
      
@@ -29,6 +29,7 @@ function Header() {
                 <label htmlFor="search" className="sr-only">
                   Search
                 </label>
+                {location.pathname !== "/RegistroProveedores" &&  location.pathname !== "/RegistroClientes" && location.pathname !== "/IniciarSesion" ? (
                 <div className="relative ">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <SearchIcon
@@ -44,6 +45,7 @@ function Header() {
                     placeholder="Buscar"
                   />
                 </div>
+                ) : null}
               </div>
             </div>
             <div className="flex items-center lg:hidden ">

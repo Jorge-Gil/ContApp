@@ -7,7 +7,7 @@ export default function RegistroClientes() {
   return (
     <>
       <Header />
-      <div>RegistroClientes</div>
+      
       <RegistroClientesLayout />
       <Footer />
     </>

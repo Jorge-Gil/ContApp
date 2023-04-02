@@ -7,7 +7,7 @@ export default function InicioSesion() {
   return (
     <>
       <Header />
-      <div>InicioSesion</div>
+     
       <CuadroInicioSesion />
       <Footer />
     </>
