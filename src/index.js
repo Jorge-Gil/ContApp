@@ -7,16 +7,19 @@ import Header from './Components/Header';
 import Home from './Pages/Home'
 import { BrowserRouter  } from 'react-router-dom';
 import {AppRoutes} from './Routes/AppRoutes';
+import { AuthProvider } from './Context/Authcontext';
 import RegistroProveedores from './Pages/RegistroProveedores'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+     <AuthProvider>
     <BrowserRouter>
     <AppRoutes />
     {/* <Home /> */}
     {/* <RegistroProveedores /> */}
     </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

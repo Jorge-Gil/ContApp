@@ -19,14 +19,14 @@ function Footer() {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="px-5 py-5">
-          <p className="text-base text-white text-center">
+        <div className="px-5 py-5 text-gray-500">
+          <p className="text-base  text-center">
            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           
           </p>
           <hr/>
-          <p className="text-base text-white text-center">
-           Posuere ac, mattis eget, nunc. 
+          <p className="text-base text-center">
+           Posuere dolor massa,  pellentesque aliquam nisl facilisis sed.
           
           </p>
         </div>

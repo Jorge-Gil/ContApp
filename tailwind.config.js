@@ -16,6 +16,7 @@ module.exports = {
         MoradoBoton: '#645ADF',
         AzulClaro: '#3B82F6',
         AzulResaltado: '#00E0FF',
+        FondoPerfil: '#02103F',
       },
       fontFamily: {
         'Outfit': ['Outfit'],

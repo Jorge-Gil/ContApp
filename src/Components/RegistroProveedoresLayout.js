@@ -94,7 +94,7 @@ function RegistroProveedoresLayout() {
       <div className=" justify-center grid w-full bg-paleta-AzulOscuro font-Outfit">
         <div className="w-full justify-center self-center text-center mt-2 mb-1.5">
           <h1 className="text-white text-5xl font-bold  mb-6 ">ContApp</h1>
-          <h2 className="text-white text-3xl font-medium self-center  mb-8  ">
+          <h2 className="text-white text-3xl font-normal self-center  mb-8  ">
             Registro para proveedores
           </h2>
         </div>

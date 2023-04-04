@@ -4,6 +4,8 @@ import Home from '../Pages/Home'
 import InicioSesion from '../Pages/InicioSesion'
 import RegistroProveedores from '../Pages/RegistroProveedores'
 import RegistroClientes from '../Pages/RegistroClientes'
+import OpcionesProveedores from '../Pages/OpcionesProveedores'
+import OpcionesClientes from '../Pages/OpcionesClientes'
 
 export const AppRoutes = () => {
   return (
@@ -14,6 +16,8 @@ export const AppRoutes = () => {
             <Route path="IniciarSesion" element={<InicioSesion/>} />
             <Route path="RegistroProveedores" element={<RegistroProveedores/>} />
             <Route path="RegistroClientes" element={<RegistroClientes/>} />
+            <Route path="OpcionesProveedores" element={<OpcionesProveedores/>} />
+            <Route path="OpcionesClientes" element={<OpcionesClientes/>} />
             </Routes>
    
   )
