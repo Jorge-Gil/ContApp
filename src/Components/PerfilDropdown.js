@@ -4,10 +4,11 @@ import { AuthContext } from "../Context/Authcontext";
 import Gahyeon from "../Images/Gahyeonie.png";
 import FlechaCollapsed from "../Images/StateCollapsed_Vector1.png";
 import FlechaExpanded from "../Images/StateExpanded_Vector1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function PerfilDropdown() {
   const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [showPerfil, setShowPerfil] = useState(false);
 
   const togglePerfil = () => {
@@ -16,6 +17,8 @@ function PerfilDropdown() {
 
   const handleLogout = () => {
     setUser(null);
+    navigate("/");
+
   };
 
   // const refButton = useRef();
@@ -57,7 +60,7 @@ function PerfilDropdown() {
             showPerfil ? "text-white font-normal text-lg mr-10" : "hidden"
           }
         >
-          Gahyeon
+          {user.Nombre}
         </p>
         <img
           className={showPerfil ? "hidden" : "pr-2"}

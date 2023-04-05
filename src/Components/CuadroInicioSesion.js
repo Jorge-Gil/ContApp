@@ -2,18 +2,19 @@ import React,{useState, useContext} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../Context/Authcontext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 
 function CuadroInicioSesion() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
+  
 
    
 
   const valoresIniciales = {
-   
+   Nombre: "Gahyeon",
     Contrasenia: "123",
     CorreoElectronico: "usuario1@gmail.com",
 
@@ -52,7 +53,9 @@ function CuadroInicioSesion() {
             onSubmit={(values) => {
               console.log(values);
               setUser(values);
-              navigate ("/");
+              const lastPath = localStorage.getItem("lastPath") || "/";
+              navigate(lastPath, { replace: true});
+
             }}
             className=" "
           >
@@ -115,6 +118,7 @@ function CuadroInicioSesion() {
                 </button>
 
                 <button
+                type="button"
                    className="self-end px-1 py-2 mt-4 mb-1 font-normal text-paleta-AzulClaro shadow-md "
                    >
 
