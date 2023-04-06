@@ -77,7 +77,7 @@ function PerfilDropdown() {
       {showPerfil && (
         <div className="absolute  w-full bg-paleta-FondoPerfil text-white grid rounded-md  ">
           <div className=" border-b-2 border-b-gray-900 mx-1">
-            <Link to="/OpcionesProveedores">
+            <Link to="/OpcionesProveedoresAjustes">
             <button className="text-left p-2 w-full hover:bg-paleta-MoradoBoton rounded-md">
               Opciones
             </button>
@@ -85,7 +85,7 @@ function PerfilDropdown() {
           </div>
           <div className=" border-b-2 border-b-gray-900 mb-1 mx-1">
             <button
-              className="text-left p-2 w-full hover:bg-paleta-MoradoBoton rounded-md "
+              className="text-left text-red-500 p-2 w-full hover:bg-paleta-MoradoBoton rounded-md hover:text-red-200 "
               onClick={handleLogout}
             >
               Cerrar sesión

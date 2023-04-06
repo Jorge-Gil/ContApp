@@ -61,6 +61,7 @@ function RegistroProveedoresLayout() {
     CorreoElectronico: Yup.string()
       .min(3, "El correo electrónico debe tener como mínimo 3 caracteres")
       .max(40, "El correo electrónico debe tener como máximo 40 caracteres")
+      .email("El correo electrónico debe ser válido")
       .required("Correo electrónico es un campo requerido"),
     TelefonoCuenta: Yup.string()
       .min(3, "El número de teléfono debe tener como mínimo 3 caracteres")
@@ -71,14 +72,19 @@ function RegistroProveedoresLayout() {
       .max(10, "El número de teléfono debe tener como máximo 10 caracteres")
       .required("Número de celular es un campo requerido"),
 
-      FotoPerfil: Yup
-      .mixed()
+      FotoPerfil: Yup.mixed()
       .nullable()
       .test(
         "FILE_SIZE",
         "El archivo es muy grande",
-        (value) => value && value.size <= (1024*1024)*10)
-      .test("FILE_FORMAT", "Solo formatos .jpg, .jpeg y .png", (value) => value && ["image/jpg", "image/jpeg", "image/png"].includes(value.type))
+        (value) =>{ if (value){ return value.size <= (1024 * 1024 * 10)} else return true}
+      )
+      .test(
+        "FILE_FORMAT",
+        "Solo formatos .jpg, .jpeg y .png",
+        (value) =>{
+        if  (value){ return ["image/jpg", "image/jpeg", "image/png"].includes(value.type)} else return true} 
+      ),
 
   });
 
@@ -285,7 +291,7 @@ function RegistroProveedoresLayout() {
               <div className="grid grid-cols-4 gap-10 mb-6">
                 <div>
                   <label
-                    className="block text-white mb-2 text-center"
+                    className="block text-white  text-center"
                     htmlFor="Especialidad"
                   >
                     Especialidad *
