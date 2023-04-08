@@ -5,7 +5,7 @@ import InicioSesion from "../Pages/InicioSesion";
 import RegistroProveedores from "../Pages/RegistroProveedores";
 import RegistroClientes from "../Pages/RegistroClientes";
 import OpcionesProveedores from "../Pages/OpcionesProveedoresAjustesPage";
-import OpcionesClientes from "../Pages/OpcionesClientes";
+import OpcionesClientes from "../Pages/OpcionesClientesAjustesPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 import  {UserRoutes}  from "./UserRoutes";
 

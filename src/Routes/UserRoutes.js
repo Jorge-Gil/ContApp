@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Home from "../Pages/Home";
 import OpcionesProveedoresAjustesPage from "../Pages/OpcionesProveedoresAjustesPage";
 import OpcionesProveedoresClientesPage from "../Pages/OpcionesProveedoresClientesPage";
-import OpcionesClientes from "../Pages/OpcionesClientes";
+import OpcionesClientesAjustesPage from "../Pages/OpcionesClientesAjustesPage";
+import OpcionesClientesProveedoresPage from "../Pages/OpcionesClientesProveedoresPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 
 export const UserRoutes = () => {
@@ -13,7 +14,8 @@ export const UserRoutes = () => {
     <Routes>
       <Route path="OpcionesProveedoresAjustes" element={<OpcionesProveedoresAjustesPage />} />
       <Route path="OpcionesProveedoresClientes" element={<OpcionesProveedoresClientesPage />} />
-      <Route path="OpcionesClientes" element={<OpcionesClientes />} />
+      <Route path="OpcionesClientesAjustes" element={<OpcionesClientesAjustesPage />} />
+      <Route path="OpcionesClientesProveedores" element={<OpcionesClientesProveedoresPage />} />
     </Routes>
     
   );

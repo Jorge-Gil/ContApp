@@ -4,6 +4,7 @@ import AgregarFoto from "../Images/AgregarFoto.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PreviewImagen from "./PreviewImagen";
+import Swal from "sweetalert2";
 
 function OpcionesProveedoresAjustes() {
   const valoresIniciales = {
@@ -22,46 +23,48 @@ function OpcionesProveedoresAjustes() {
     Contrasenia: Yup.string()
       .min(3, "La contraseña debe tener como mínimo 3 caracteres")
       .max(20, "La contraseña debe tener como máximo 20 caracteres"),
-      
 
     Especialidad: Yup.string()
       .min(3, "La especialidad debe tener como mínimo 3 caracteres")
       .max(30, "La especialidad debe tener como máximo 30 caracteres"),
-      
 
     DireccionCuenta: Yup.string()
       .min(3, "La dirección debe tener como mínimo 3 caracteres")
       .max(40, "La dirección debe tener como máximo 40 caracteres"),
-      
 
     CorreoElectronico: Yup.string()
       .min(3, "El correo electrónico debe tener como mínimo 3 caracteres")
       .max(40, "El correo electrónico debe tener como máximo 40 caracteres")
       .email("El correo electrónico no es válido"),
-   
+
     TelefonoCuenta: Yup.string()
       .min(3, "El número de teléfono debe tener como mínimo 3 caracteres")
       .max(12, "El número de teléfono debe tener como máximo 12 caracteres"),
-    
+
     CelularCuenta: Yup.string()
       .min(3, "El número de celular debe tener como mínimo 3 caracteres")
       .max(10, "El número de teléfono debe tener como máximo 10 caracteres"),
-     
 
     FotoPerfil: Yup.mixed()
       .nullable()
-      .test(
-        "FILE_SIZE",
-        "El archivo es muy grande",
-        (value) =>{ if (value){ return value.size <= (1024 * 1024 * 10)} else return true}
-      )
-      .test(
-        "FILE_FORMAT",
-        "Solo formatos .jpg, .jpeg y .png",
-        (value) =>{
-        if  (value){ return ["image/jpg", "image/jpeg", "image/png"].includes(value.type)} else return true} 
-      ),
+      .test("FILE_SIZE", "El archivo es muy grande", (value) => {
+        if (value) {
+          return value.size <= 1024 * 1024 * 10;
+        } else return true;
+      })
+      .test("FILE_FORMAT", "Solo formatos .jpg, .jpeg y .png", (value) => {
+        if (value) {
+          return ["image/jpg", "image/jpeg", "image/png"].includes(value.type);
+        } else return true;
+      }),
   });
+
+  const PerfilActualizado = () => {
+    Swal.fire({
+      title: "Perfil actualizado exitosamente",
+      icon: "success",
+    });
+  };
 
   return (
     <div className="mt-20 ml-8 bg-paleta-MoradoFondo/70 w-full max-w-[1000px] self-center min-w-min p-16 rounded-3xl mb-24  px-20 shadow-lg">
@@ -108,48 +111,47 @@ function OpcionesProveedoresAjustes() {
         >
           {({ values, setFieldValue }) => (
             <Form className="  w-full">
-    
+              <div className="mt-6 text-left border-b-2 pb-6">
+                <label className="text-xl pl-2" htmlFor="FotoPerfil">
+                  Tu foto de perfil
+                </label>
+                <div className="max-w-[180px]">
+                  <input
+                    type="file"
+                    hidden
+                    id="FotoPerfilAjustes"
+                    ref={fileRef}
+                    placeholder="Ingrese su foto..."
+                    className="self-center appearance-none rounded-full w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
+                    onChange={(event) => {
+                      setFieldValue("FotoPerfil", event.currentTarget.files[0]);
+                    }}
+                  />
 
-      <div className="mt-6 text-left border-b-2 pb-6">
-        <label className="text-xl pl-2" htmlFor="FotoPerfil">Tu foto de perfil</label>
-        <div className="max-w-[180px]">
-        <input
-    type="file"
-    hidden
-    id="FotoPerfilAjustes"
-    ref={fileRef}
-    placeholder="Ingrese su foto..."
-    className="self-center appearance-none rounded-full w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
-    onChange={(event) => {
-      setFieldValue(
-        "FotoPerfil",
-        event.currentTarget.files[0]
-      );
-    }}
-  />
-       
-  <button
-    className="self-center appearance-none  font-bold  text-gray-800 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer "
-    onClick={() => fileRef.current.click()}
-  >
-     
-          {!values.FotoPerfil && <PreviewImagen file={values.FotoPerfil} /> ? (  <img
-              src={AgregarFoto}
-              alt="AgregarFoto"
-              className="mt-4 w-40 h-40 mb-0.5  hover:cursor-pointer rounded-lg"
-            />) : (  <PreviewImagen file={values.FotoPerfil} />)}
-           
-         
-  </button>
-  <ErrorMessage
-    name="FotoPerfil"
-    component="span"
-    className="text-red-500 text-sm "
-  />
-        </div>
-      </div>
+                  <button
+                    className="self-center appearance-none  font-bold  text-gray-800 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer "
+                    onClick={() => fileRef.current.click()}
+                  >
+                    {!values.FotoPerfil && (
+                      <PreviewImagen file={values.FotoPerfil} />
+                    ) ? (
+                      <img
+                        src={AgregarFoto}
+                        alt="AgregarFoto"
+                        className="mt-4 w-40 h-40 mb-0.5  hover:cursor-pointer rounded-lg"
+                      />
+                    ) : (
+                      <PreviewImagen file={values.FotoPerfil} />
+                    )}
+                  </button>
+                  <ErrorMessage
+                    name="FotoPerfil"
+                    component="span"
+                    className="text-red-500 text-sm "
+                  />
+                </div>
+              </div>
 
-     
               <div className="grid grid-cols-2 mt-6  mb-4">
                 <div className="mr-4">
                   <label className="block text-white ">Dirección</label>
@@ -236,29 +238,28 @@ function OpcionesProveedoresAjustes() {
                     as="select"
                     className="w-full px-4 py-2  text-gray-700  max-w-md bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring"
                   >
-                    <option value="" label="Seleccione su nueva especialidad...">
+                    <option
+                      value=""
+                      label="Seleccione su nueva especialidad..."
+                    >
                       Seleccione su nueva especialidad
                     </option>
                     <option value="ContadorFiscal" label="Contador Fiscal">
-                   
                       Contador Fiscal
                     </option>
                     <option
                       value="ContadorGubernamental"
                       label="Contador Gubernamental"
                     >
-                   
                       Contador Gubernamental
                     </option>
                     <option value="Auditor" label="Auditor">
-                     
                       Auditor
                     </option>
                     <option
                       value="ConsultorContable"
                       label="Consultor Contable"
                     >
-                 
                       Consultor Contable
                     </option>
                   </Field>
@@ -298,11 +299,11 @@ function OpcionesProveedoresAjustes() {
                   type="submit"
                   className="self-end px-4 py-2  font-semibold  bg-paleta-AzulResaltado rounded-md shadow-md text-gray-800 "
                   // style={{ position: "absolute", bottom: 20, left: 80 }}
+                  onClick={PerfilActualizado}
                 >
                   Actualizar Perfil
                 </button>
               </div>
-
             </Form>
           )}
         </Formik>
