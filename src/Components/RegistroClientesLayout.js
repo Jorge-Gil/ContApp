@@ -352,6 +352,7 @@ function RegistroClientesLayout() {
   />
   {values.FotoPerfil && <PreviewImagen file={values.FotoPerfil} />}
   <button
+  type="button"
     className="self-center appearance-none rounded-full bg-slate-200 font-bold max-w-xs py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
     onClick={() => fileRef.current.click()}
   >
