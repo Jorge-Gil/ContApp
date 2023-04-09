@@ -129,6 +129,7 @@ function OpcionesProveedoresAjustes() {
                   />
 
                   <button
+                  type= "button"
                     className="self-center appearance-none  font-bold  text-gray-800 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer "
                     onClick={() => fileRef.current.click()}
                   >
