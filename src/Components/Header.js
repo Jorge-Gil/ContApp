@@ -12,13 +12,22 @@ import {
   Router,
   Outlet,
   useLocation,
+   
 } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../Context/Authcontext";
 
 
 function Header() {
   const { user } = useContext(AuthContext);
   const location = useLocation();
+  let navigate = useNavigate();
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      navigate('/Busqueda');
+    }
+  }
 
   return (
     <>
@@ -53,6 +62,7 @@ function Header() {
                       id="search"
                       className="block w-full  border border-transparent rounded-md py-2 pl-10 pr-3 text-base placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 "
                       placeholder="Buscar"
+                      onKeyDown={handleKeyDown}
                     />
                   </div>
                 ) : null}
@@ -157,7 +167,7 @@ function Header() {
                     </Link>
                   </>
                 ) : null}
-                }
+                
               </div>
             </div>
             )}

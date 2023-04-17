@@ -5,6 +5,8 @@ import OpcionesProveedoresAjustesPage from "../Pages/OpcionesProveedoresAjustesP
 import OpcionesProveedoresClientesPage from "../Pages/OpcionesProveedoresClientesPage";
 import OpcionesClientesAjustesPage from "../Pages/OpcionesClientesAjustesPage";
 import OpcionesClientesProveedoresPage from "../Pages/OpcionesClientesProveedoresPage";
+import BusquedaPage from "../Pages/BusquedaPage";
+import PerfilPage from "../Pages/PerfilPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 
 export const UserRoutes = () => {
@@ -16,6 +18,8 @@ export const UserRoutes = () => {
       <Route path="OpcionesProveedoresClientes" element={<OpcionesProveedoresClientesPage />} />
       <Route path="OpcionesClientesAjustes" element={<OpcionesClientesAjustesPage />} />
       <Route path="OpcionesClientesProveedores" element={<OpcionesClientesProveedoresPage />} />
+      <Route path="Busqueda" element={<BusquedaPage />} />
+      <Route path="Perfil" element={<PerfilPage />} />
     </Routes>
     
   );

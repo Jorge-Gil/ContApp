@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Header />
-      <div className="bg-paleta-AzulOscuro w-auto h-full mx-auto py-6 sm:px-6 lg:px-8 font-Outfit  ">
+      <div className="bg-paleta-AzulOscuro w-auto h-full mx-auto py-6 sm:px-6 lg:px-8 font-Outfit overflow-auto sm:overflow-clip  ">
         <div className="flex flex-wrap -mx-4">
           <div className="w-full lg:w-1/2 px-20 pr-52 h-screen">
             <div className="lg:mt-20">
