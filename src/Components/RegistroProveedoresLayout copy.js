@@ -1,80 +1,99 @@
-import React,{useRef, useState} from "react";
-import { Formik, Form, Field, ErrorMessage} from "formik";
+import React,{useRef, useState, useEffect} from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PreviewImagen from "./PreviewImagen";
 import axios from "axios";
 
 function RegistroProveedoresLayout() {
-
-  const [imageFile, setImageFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const valoresIniciales = {
-    especialidad: "",
-    contrasenia: "",
-    primerNombre: "",
-    segundoNombre: "",
-    primerApellido: "",
-    segundoApellido: "",
-    cedula: "",
-    correo: "",
-    direccion: "",
-    telefono: "",
-    celular: "",
-    fotoPath: "",
+    Especialidad: "",
+    Contrasenia: "",
+    Nombre1Cuenta: "",
+    Nombre2Cuenta: "",
+    Apellido1Cuenta: "",
+    Apellido2Cuenta: "",
+    Cedula: "",
+    CorreoElectronico: "",
+    DireccionCuenta: "",
+    TelefonoCuenta: "",
+    CelularCuenta: "",
+    FotoPerfil: "",
+  };
+
+  const PreviewImagen = ({ file }) => {
+    const [previewUrl, setPreviewUrl] = useState("");
+  
+    useEffect(() => {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setPreviewUrl(fileReader.result);
+      };
+      fileReader.readAsDataURL(file);
+    }, [file]);
+  
+    return (
+      <img
+        src={previewUrl}
+        alt="Preview"
+        className="h-40 w-40 object-cover "
+      />
+    );
   };
 
   const fileRef = useRef(null);
 
   const validacion = Yup.object().shape({
-    contrasenia: Yup.string()
+    Contrasenia: Yup.string()
       .min(3, "La contraseña debe tener como mínimo 3 caracteres")
       .max(20, "La contraseña debe tener como máximo 20 caracteres")
       .required("Contraseña es un campo requerido"),
-      primerNombre: Yup.string()
+    Nombre1Cuenta: Yup.string()
       .min(3, "El primer nombre debe tener como mínimo 3 caracteres")
       .max(20, "El primer nombre debe tener como máximo 20 caracteres")
       .required("Primer nombre es un campo requerido"),
-      segundoNombre: Yup.string()
+    Nombre2Cuenta: Yup.string()
       .min(3, "El segundo nombre debe tener como mínimo 3 caracteres")
       .max(20, "El segundo nombre debe tener como máximo 20 caracteres")
       .notRequired(),
-      primerApellido: Yup.string()
+    Apellido1Cuenta: Yup.string()
       .min(3, "El primer apellido debe tener como mínimo 3 caracteres")
       .max(20, "El primer apellido debe tener como máximo 20 caracteres")
       .required("Primer apellido es un campo requerido"),
-      segundoApellido: Yup.string()
+    Apellido2Cuenta: Yup.string()
       .min(3, "El segundo apellido debe tener como mínimo 3 caracteres")
       .max(20, "El segundo apellido debe tener como máximo 20 caracteres")
       .notRequired(),
-      cedula: Yup.string()
+    Cedula: Yup.string()
       .min(10, "La Cédula debe tener como mínimo 10 caracteres")
       .max(11, "La Cédula debe tener como máximo 11 caracteres")
       .required("Cédula es un campo requerido"),
-      especialidad: Yup.string()
+    Especialidad: Yup.string()
       .min(3, "La especialidad debe tener como mínimo 3 caracteres")
       .max(30, "La especialidad debe tener como máximo 30 caracteres")
       .required("Especialidad es un campo requerido"),
 
-      direccion: Yup.string()
+    DireccionCuenta: Yup.string()
       .min(3, "La dirección debe tener como mínimo 3 caracteres")
       .max(40, "La dirección debe tener como máximo 40 caracteres")
       .required("Dirección es un campo requerido"),
 
-      correo: Yup.string()
+    CorreoElectronico: Yup.string()
       .min(3, "El correo electrónico debe tener como mínimo 3 caracteres")
       .max(40, "El correo electrónico debe tener como máximo 40 caracteres")
       .email("El correo electrónico debe ser válido")
       .required("Correo electrónico es un campo requerido"),
-      telefono: Yup.string()
+    TelefonoCuenta: Yup.string()
       .min(3, "El número de teléfono debe tener como mínimo 3 caracteres")
       .max(12, "El número de teléfono debe tener como máximo 12 caracteres")
       .required("Número de teléfono es un campo requerido"),
-      celular: Yup.string()
+    CelularCuenta: Yup.string()
       .min(3, "El número de celular debe tener como mínimo 3 caracteres")
       .max(10, "El número de teléfono debe tener como máximo 10 caracteres")
       .required("Número de celular es un campo requerido"),
 
-      fotoPath: Yup.mixed()
+      FotoPerfil: Yup.mixed()
       .nullable()
       .test(
         "FILE_SIZE",
@@ -91,26 +110,35 @@ function RegistroProveedoresLayout() {
   });
 
   const onSubmit = (data) => {
-    const imagePath = URL.createObjectURL(imageFile);
-    data.tipoUsuario = "Proveedor";
-    data.likes =0
-    data.dislikes =0
-    data.fotoPath = imagePath;
-    console.log(data);
-    axios.post("http://localhost:3001/auth/register", data).then(() => {
+    const formData = new FormData();
+    const datos = {
+ 
 
-      // data.tipoUsuario = "Proveedor";
+      especialidad: formData.get('Especialidad'),
+    contrasenia: formData.get('Contrasenia'),
+    primerNombre: formData.get('Nombre1Cuenta'),
+    segundoNombre: formData.get('Nombre2Cuenta'),
+    primerApellido: formData.get('Apellido1Cuenta'),
+    segundoApellido: formData.get('Apellido2Cuenta'),
+    cedula: formData.get('Cedula'),
+    correo: formData.get('CorreoElectronico'),
+    direccion: formData.get('DireccionCuenta'),
+    telefono: formData.get('TelefonoCuenta'),
+    celular: formData.get('CelularCuenta'),
+    tipoUsuario: "Proveedor",
+    fotoPath: formData.get('FotoPerfil').path,
+   
+    
+    // if (selectedFile) {
+    //   fotoPath: formData.append("FotoPerfil", selectedFile);
+    // }
+  }
+  
+    axios.post("http://localhost:3001/auth/register", datos).then(() => {
       console.log(data);
-     
       alert("Cuenta registrada Correctamente");
     });
   };
-
-  // const handleFileChange = (event) => {
-  //   const file = event.target.files[0];
-  //   const fotoPath = URL.createObjectURL(file);
-  //   setFieldValue("fotoPath", fotoPath);
-  // };
 
   return (
     <>
@@ -137,20 +165,20 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4 ">
                   <label
                     className="block text-white  mb-2 text-center"
-                    htmlFor="primerNombre"
+                    htmlFor="Nombre1Cuenta"
                   >
                     Primer nombre *
                   </label>
 
                   <Field
                     autoComplete="off"
-                    id="primerNombre"
-                    name="primerNombre"
+                    id="Nombre1Cuenta"
+                    name="Nombre1Cuenta"
                     placeholder="Ingrese su Primer nombre..."
                     className="appearance-none border rounded w-full max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="primerNombre"
+                    name="Nombre1Cuenta"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -159,20 +187,20 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4">
                   <label
                     className="block text-white mb-2 text-center"
-                    htmlFor="segundoNombre"
+                    htmlFor="Nombre2Cuenta"
                   >
                     Segundo nombre
                   </label>
 
                   <Field
                     autoComplete="off"
-                    id="segundoNombre"
-                    name="segundoNombre"
+                    id="Nombre2Cuenta"
+                    name="Nombre2Cuenta"
                     placeholder="Ingrese su Segundo nombre..."
                     className="appearance-none border rounded w-full  max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="segundoNombre"
+                    name="Nombre2Cuenta"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -181,19 +209,19 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4">
                   <label
                     className="block text-white mb-2 text-center"
-                    htmlFor="primerApellido"
+                    htmlFor="Apellido1Cuenta"
                   >
                     Primer apellido +
                   </label>
                   <Field
                     autoComplete="off"
-                    id="primerApellido"
-                    name="primerApellido"
+                    id="Apellido1Cuenta"
+                    name="Apellido1Cuenta"
                     placeholder="Ingrese su Primer apellido..."
                     className="appearance-none border rounded w-full  max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="primerApellido"
+                    name="Apellido1Cuenta"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -202,19 +230,19 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4">
                   <label
                     className="block text-white mb-2 text-center"
-                    htmlFor="segundoApellido"
+                    htmlFor="Apellido2Cuenta"
                   >
                     Segundo apellido
                   </label>
                   <Field
                     autoComplete="off"
-                    id="segundoApellido"
-                    name="segundoApellido"
+                    id="Apellido2Cuenta"
+                    name="Apellido2Cuenta"
                     placeholder="Ingrese su Segundo apellido..."
                     className="appearance-none border rounded w-full  max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="segundoApellido"
+                    name="Apellido2Cuenta"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -224,19 +252,19 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4">
                   <label
                     className="block text-white  mb-2 text-center"
-                    htmlFor="cedula"
+                    htmlFor="Cedula"
                   >
                     N° Cédula *
                   </label>
                   <Field
                     autoComplete="off"
-                    id="cedula"
-                    name="cedula"
+                    id="Cedula"
+                    name="Cedula"
                     placeholder="Ingrese su Número de cédula..."
                     className="appearance-none border rounded w-full  max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="cedula"
+                    name="Cedula"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -248,13 +276,13 @@ function RegistroProveedoresLayout() {
                   </label>
                   <Field
                     autoComplete="off"
-                    id="correo"
-                    name="correo"
+                    id="formatoRegistro"
+                    name="CorreoElectronico"
                     placeholder="Ingrese su Correo..."
                     className="w-full px-4 py-2 mt-2 text-gray-700  max-w-xs bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring"
                   />
                   <ErrorMessage
-                    name="correo"
+                    name="CorreoElectronico"
                     component="span"
                     className="text-red-500"
                   />
@@ -267,12 +295,12 @@ function RegistroProveedoresLayout() {
                   <Field
                     autoComplete="off"
                     id="formatoRegistro"
-                    name="telefono"
+                    name="TelefonoCuenta"
                     placeholder="Ingrese su Teléfono..."
                     className="w-full px-4 py-2 mt-2 text-gray-700  max-w-xs bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring"
                   />
                   <ErrorMessage
-                    name="telefono"
+                    name="TelefonoCuenta"
                     component="span"
                     className="text-red-500"
                   />
@@ -285,12 +313,12 @@ function RegistroProveedoresLayout() {
                   <Field
                     autoComplete="off"
                     id="formatoRegistro"
-                    name="celular"
+                    name="CelularCuenta"
                     placeholder="Ingrese su Número de Celular..."
                     className="w-full px-4 py-2 mt-2 text-gray-700 max-w-xs  bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring"
                   />
                   <ErrorMessage
-                    name="celular"
+                    name="CelularCuenta"
                     component="span"
                     className="text-red-500"
                   />
@@ -309,14 +337,14 @@ function RegistroProveedoresLayout() {
                 <div>
                   <label
                     className="block text-white  text-center"
-                    htmlFor="especialidad"
+                    htmlFor="Especialidad"
                   >
                     Especialidad *
                   </label>
                   <Field
                    autoComplete="off"
-                   id="especialidad"
-                  name="especialidad" as="select"  className="w-full px-4 py-2 mt-2 text-gray-700  max-w-xs bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring">
+                   id="Especialidad"
+                  name="Especialidad" as="select"  className="w-full px-4 py-2 mt-2 text-gray-700  max-w-xs bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring">
                  
                     <option value="" label="Seleccione su especialidad..." >Seleccione su especialidad </option>
                     <option value="ContadorFiscal" label="Contador Fiscal" > Contador Fiscal</option>
@@ -332,7 +360,7 @@ function RegistroProveedoresLayout() {
                  
                   </Field>
                   <ErrorMessage
-                    name="especialidad"
+                    name="Especialidad"
                     component="span"
                     className="text-red-500"
                   />
@@ -347,12 +375,12 @@ function RegistroProveedoresLayout() {
                   <Field
                     autoComplete="off"
                     id="formatoRegistro"
-                    name="direccion"
+                    name="DireccionCuenta"
                     placeholder="Ingrese su Dirección..."
                     className="w-full px-4 py-2 mt-2 text-gray-700  max-w-xs bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring"
                   />
                   <ErrorMessage
-                    name="direccion"
+                    name="DireccionCuenta"
                     component="span"
                     className="text-red-500"
                   />
@@ -361,7 +389,7 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4">
                   <label
                     className="block text-white mb-2 text-center"
-                    htmlFor="contrasenia"
+                    htmlFor="Contrasenia"
                   >
                     Contraseña *
                   </label>
@@ -369,13 +397,13 @@ function RegistroProveedoresLayout() {
                   <Field
                     autoComplete="off"
                     type="password"
-                    id="contrasenia"
-                    name="contrasenia"
+                    id="Contrasenia"
+                    name="Contrasenia"
                     placeholder="Ingrese su contraseña..."
                     className="appearance-none border rounded w-full py-2 px-3  max-w-xs text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="contrasenia"
+                    name="Contrasenia"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -384,34 +412,34 @@ function RegistroProveedoresLayout() {
                 <div className="mb-4 items-center text-center">
   <label
     className="block text-white mb-2"
-    htmlFor="fotoPath"
+    htmlFor="FotoPerfil"
   >
     Foto de perfil
   </label>
   <input
     type="file"
-    hidden
-    id="fotoPath"
-    ref={fileRef}
-    placeholder="Ingrese su foto..."
-    className="self-center appearance-none rounded-full w-full max-w-xs py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
+    id="FotoPerfil"
+    name="FotoPerfil"
     onChange={(event) => {
-      setFieldValue(
-        "fotoPath",
-        event.currentTarget.files[0]
-      );setImageFile(event.target.files[0])
+      setSelectedFile(event.target.files[0]);
     }}
+    ref={fileRef}
+    style={{ display: "none" }}
   />
-  {values.fotoPath && <PreviewImagen file={values.fotoPath} />}
   <button
-  type= "button"
-    className="self-center appearance-none rounded-full bg-slate-200 font-bold max-w-xs py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
-    onClick={() => fileRef.current.click()}
+    type="button"
+    className="bg-paleta-Rosa text-white font-bold py-2 px-4 rounded mt-2"
+    onClick={() => {
+      fileRef.current.click();
+    }}
   >
     Seleccionar archivo
   </button>
+  {selectedFile && (
+    <PreviewImagen file={selectedFile} />
+  )}
   <ErrorMessage
-    name="fotoPath"
+    name="FotoPerfil"
     component="span"
     className="text-red-500 text-sm"
   />

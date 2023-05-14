@@ -3,38 +3,44 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../Context/Authcontext";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 
 function CuadroInicioSesion() {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { user,setUser } = useContext(AuthContext);
   
 
    
 
   const valoresIniciales = {
-   Nombre: "Gahyeon",
-    Contrasenia: "123",
-    CorreoElectronico: "usuario1@gmail.com",
+  //  Nombre: "Gahyeon",
+  contrasenia: "1234",
+  correo: "test@gmail.com",
 
   };
 
   const validacion = Yup.object().shape({
-    Contrasenia: Yup.string()
+    contrasenia: Yup.string()
       .required("Contraseña es un campo requerido"),
-    CorreoElectronico: Yup.string().email()
+      correo: Yup.string().email()
       .min(3, "El correo electrónico debe tener como mínimo 3 caracteres")
       .max(40, "El correo electrónico debe tener como máximo 40 caracteres")
       .required("Correo electrónico es un campo requerido"),
   });
 
-  // const onSubmit = (data) => {
-  //   axios.post("http://localhost:3001/Cuentas", data).then(() => {
-  //     console.log(data);
-  //     alert("Cuenta registrada Correctamente");
-  //   });
-  // };
+  const onSubmit = (data) => {
+    axios.post("http://localhost:3001/auth/login", data).then(() => {
+      console.log(data);
+      
+      setUser(data);
+      
+      alert(`Usuario logeado correctamente`);
+        const lastPath = localStorage.getItem("lastPath") || "/";
+        navigate(lastPath, { replace: true});
+    });
+  };
 
   return (
     <>
@@ -49,14 +55,14 @@ function CuadroInicioSesion() {
           <Formik
             initialValues={valoresIniciales}
             validationSchema={validacion}
-            // onSubmit={onSubmit}
-            onSubmit={(values) => {
-              console.log(values);
-              setUser(values);
-              const lastPath = localStorage.getItem("lastPath") || "/";
-              navigate(lastPath, { replace: true});
+            onSubmit={onSubmit}
+            // onSubmit={(values) => {
+            //   console.log(values);
+            //   setUser(values);
+            //   const lastPath = localStorage.getItem("lastPath") || "/";
+            //   navigate(lastPath, { replace: true});
 
-            }}
+            // }}
             className=" "
           >
             <Form className="  w-full">
@@ -71,13 +77,13 @@ function CuadroInicioSesion() {
 
                   <Field
                     autoComplete="off"
-                    id="CorreoElectronico"
-                    name="CorreoElectronico"
+                    id="correo"
+                    name="correo"
                     placeholder="Ingrese correo electrónico..."
                     className="appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="CorreoElectronico"
+                    name="correo"
                     component="span"
                     className="text-red-500 text-sm"
                   />
@@ -86,7 +92,7 @@ function CuadroInicioSesion() {
                 <div className="mb-12">
                   <label
                     className="block text-white mb-2"
-                    htmlFor="Contrasenia"
+                    htmlFor="contrasenia"
                   >
                     Contraseña
                   </label>
@@ -94,13 +100,13 @@ function CuadroInicioSesion() {
                   <Field
                     autoComplete="off"
                     type="password"
-                    id="Contrasenia"
-                    name="Contrasenia"
+                    id="contrasenia"
+                    name="contrasenia"
                     placeholder="Ingrese su contraseña..."
                     className="appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
                   <ErrorMessage
-                    name="Contrasenia"
+                    name="contrasenia"
                     component="span"
                     className="text-red-500 text-sm"
                   />

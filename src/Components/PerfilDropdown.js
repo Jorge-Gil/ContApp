@@ -60,7 +60,7 @@ function PerfilDropdown() {
             showPerfil ? "text-white font-normal text-lg mr-10" : "hidden"
           }
         >
-          {user.Nombre}
+          {user.primerNombre} 가현이
         </p>
         <img
           className={showPerfil ? "hidden" : "pr-2"}
