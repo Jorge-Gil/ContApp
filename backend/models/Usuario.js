@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 
+
 const usuarioSchema = mongoose.Schema({
 
     primerNombre: {
@@ -87,8 +88,11 @@ const usuarioSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+
+   
 }, {timestamps: true});
 
-const Usuario = mongoose.model("Usuario", usuarioSchema);
+const Usuario = mongoose.model("Usuario", usuarioSchema)
+ 
 
 export default Usuario;

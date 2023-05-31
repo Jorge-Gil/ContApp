@@ -1,4 +1,4 @@
-import React,{useState, useContext} from "react";
+import React,{useState, useContext, useEffect} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AuthContext } from "../Context/Authcontext";
@@ -31,16 +31,37 @@ function CuadroInicioSesion() {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/auth/login", data).then(() => {
+    axios.post("http://localhost:3001/auth/login", data).then((response) => {
       console.log(data);
+      // console.log(response.data);
+      setUser(response.data);
       
-      setUser(data);
       
       alert(`Usuario logeado correctamente`);
         const lastPath = localStorage.getItem("lastPath") || "/";
         navigate(lastPath, { replace: true});
+        
     });
+    
   };
+
+  useEffect(() => {
+   
+    axios
+      .get("http://localhost:3001/auth/user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        setUser(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [setUser]);
+
 
   return (
     <>
